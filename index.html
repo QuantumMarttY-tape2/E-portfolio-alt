@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced E-portfolio</title>
+    <link rel="stylesheet" href="./style-adv.css">
+    <!-- <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="./index.js"></script>
+
+    <!-- Email Service -->
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function() {
+        emailjs.init({
+            publicKey: "Q-vcGmCqfm9q5IH5L",
+        });
+    })();
+    </script>
+</head>
+<body>
+    <section id="landing-page" onmousemove="moveBackground(event)">
+        <nav>
+            <figure>
+                <img id="personal-logo" src="./assets/map-of-mathematics.jpeg" alt="">
+            </figure>
+
+            <!-- Somehow does not fully work on my Macbook. -->
+            <ul class="nav__link--list">
+                <li class="nav__link" onclick="toggleModal()">
+                    <a href="#"  class="
+                        nav__link--anchor
+                        link__hover-effect
+                        link__hover-effect--black
+                    ">About</a>
+                </li>
+                <li class="nav__link">
+                    <a href="#projects"  class="
+                        nav__link--anchor
+                        link__hover-effect
+                        link__hover-effect--black
+                    ">Projects</a>
+                </li>
+                <li class="nav__link" onclick="toggleModal()">
+                    <a href="#"  class="
+                        nav__link--anchor
+                        link__hover-effect
+                        link__hover-effect--black
+                    ">Contact</a>
+                </li>
+
+                <!-- Light mode and dark mode -->
+                <li class="nav__link">
+                    <a href="#"  class="
+                        nav__link--anchor
+                        link__hover-effect
+                        link__hover-effect--black
+                    "><i class="fas fa-adjust" onclick="toggleContrast()"></i></a>
+                </li>
+            </ul>
+        </nav>
+        
+        <header class="header">
+            <div class="header__content">
+                <h1 class="title">Hello, and</h1>
+                <h1 class="title orange">Welcome</h1>
+                <p class="header__para">
+                    I am a Data Analyst, Frontend Developer, Mathematician, and Physicist.
+                    I am looking forward to have a job in <b class="orange">Frontend development</b>.
+                    <br>
+                    Here is a bit more information about me:
+                </p>
+                <div class="social__list">
+                    <a href="https://www.linkedin.com/in/fukun-yun-842184321/" target="_blank" class="social__link click">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/QuantumMarttY-tape2" target="_blank" class="social__link click">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="./assets/FuKun Yun Resume.pdf" target="_blank" class="social__link click">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <a href="#">
+            <button class="mail__btn click" onclick="toggleModal()">
+                <i class="fas fa-envelope"></i>
+            </button>
+        </a>
+        <a href="#projects" class="scroll">
+            <div class="scroll__icon click"></div>
+        </a>
+
+        <div class="modal">
+            <div class="modal__half modal__about">
+                <h3 class="modal__title modal__title--about">Here is some more information about me.</h3>
+                <h4 class="modal__sub-title modal__sub-title--about">Data Analyst, Frontend Developer, Mathematician, and Physicist</h4>
+                <p class="model__para">
+                    I am particularly fond of <b class="orange">abstract entities</b> like methdologies and logic.
+                    <br>
+                    I can absorb any concept with minimum effort.
+                </p>
+                <div class="modal__languages">
+                    <figure class="modal__language">
+                        <img class="modal__language--img" src="./assets/javas.png" alt="">
+                        <span class="language__name">JavaScript</span>
+                    </figure>
+                    <figure class="modal__language">
+                        <img class="modal__language--img" src="./assets/HTML5_logo_and_wordmark.svg" alt="">
+                        <span class="language__name">HTML</span>
+                    </figure>
+                    <figure class="modal__language">
+                        <img class="modal__language--img" src="./assets/Python-logo-notext.svg" alt="">
+                        <span class="language__name">Python</span>
+                    </figure>
+                    <figure class="modal__language">
+                        <img class="modal__language--img" src="./assets/Mathematica_Logo.svg" alt="">
+                        <span class="language__name">Mathematica</span>
+                    </figure>
+                </div>
+            </div>
+
+            <!-- Input Field -->
+
+            <div class="modal__half modal__contact">
+            <i class="fas fa-times modal__exit click" onclick="toggleModal()"></i>
+                <h3 class="modal__title modal__title--contact">
+                    Let us have a chat.
+                </h3>
+                <h4 class="modal__sub-title modal__sub-title--contact">
+                    I am currently open to new oppotunities.
+                </h4>
+                <form id="contact__form" onsubmit="contact(event)">
+                    <div class="form__item">
+                        <label class="form__item--label">Name</label>
+                        <input class="input" name="user_name" type="text" required></input>
+                    </div>
+                    <div class="form__item">
+                        <label class="form__item--label">Email</label>
+                        <input class="input" name="user_email" type="email" required></input>
+                    </div>
+                    <div class="form__item">
+                        <label class="form__item--label">Message</label>
+                        <textarea class="input" name="message" type="text" required></textarea>
+                    </div>
+                    <button id="contact__submit"  class="form__submit">Send</button>
+                </form>
+                <div class="modal__overlay modal__overlay--loading">
+                    <i class="fas fa-spinner"></i>
+                </div>
+                <div class="modal__overlay modal__overlay--success">
+                    Message sent successfully.
+                </div>
+            </div>
+        </div>
+
+    <!-- Background Shapes -->
+
+        <img src="./assets/semi circle.svg" class="shape shape--0">
+        <img src="./assets/circle.svg" class="shape shape--1">
+        <img src="./assets/squiggly.svg" class="shape shape--2">
+        <img src="./assets/circle.svg" class="shape shape--3">
+        <img src="./assets/triangle.svg" class="shape shape--4">
+        <img src="./assets/circle.svg" class="shape shape--5">
+        <img src="./assets/squiggly.svg" class="shape shape--6">
+        <img src="./assets/circle.svg" class="shape shape--7">
+        <img src="./assets/semi circle.svg" class="shape shape--8">
+    </section>
+
+    <!-- Project Section -->
+
+    <section id="projects">
+        <div class="container">
+            <div class="row">
+                <h1 class="section__title">
+                    Here are some of my <span class="orange">projects</span>
+                </h1>
+                <ul class="project__list">
+                    <li class="project">
+                        <div class="project__wrapper">
+                            <img src="./assets/YC_Directory.png" class="project__img" alt="">
+                            <div class="project__wrapper--bg"></div>
+                            <div class="project__description">
+                                <h3 class="project__description--title">
+                                    Startup Posts
+                                </h3>
+                                <h4 class="project__description--sub-title">
+                                    Next 15, TypeScript, shadcn
+                                </h4>
+                                <p class="project__description--para">
+                                    This website allows you to post startup companies and to check on existing ones.
+                                </p>
+                                <div class="project__description--links">
+                                    <a href="https://github.com/QuantumMarttY-tape2/yc_directory" target="_blank" class="project__description--link">
+                                        <i class="fa-brands fa-github"></i>
+                                    </a>
+                                    <a href="https://yc-directory-beige-kappa.vercel.app" target="_blank" class="project__description--link">
+                                        <i class="fa-solid fa-link"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="project">
+                        <div class="project__wrapper">
+                            <img src="./assets/blinker mockup.png" class="project__img" alt="">
+                            <div class="project__wrapper--bg"></div>
+                            <div class="project__description">
+                                <h3 class="project__description--title">
+                                    Film Browser with React
+                                </h3>
+                                <h4 class="project__description--sub-title">
+                                    HTML, CSS, JavaScript, React
+                                </h4>
+                                <p class="project__description--para">
+                                    This website allows you to search movies and add them to a watchlist.
+                                </p>
+                                <div class="project__description--links">
+                                    <a href="https://github.com/QuantumMarttY-tape2/Film-Browser" target="_blank" class="project__description--link">
+                                        <i class="fa-brands fa-github"></i>
+                                    </a>
+                                    <a href="https://film-browser.vercel.app" target="_blank" class="project__description--link">
+                                        <i class="fa-solid fa-link"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="project">
+                        <div class="project__wrapper">
+                            <img src="./assets/google mockup.png" class="project__img" alt="">
+                            <div class="project__wrapper--bg"></div>
+                            <div class="project__description">
+                                <h3 class="project__description--title">
+                                    Library with React
+                                </h3>
+                                <h4 class="project__description--sub-title">
+                                    HTML, CSS, JavaScript, React
+                                </h4>
+                                <p class="project__description--para">
+                                    This website is a hypothetical library that gives you features about books, and the ability to add them in a shopping cart.
+                                </p>
+                                <div class="project__description--links">
+                                    <a href="https://github.com/QuantumMarttY-tape2/React-Preparation" target="_blank" class="project__description--link">
+                                        <i class="fa-brands fa-github"></i>
+                                    </a>
+                                    <a href="https://example-library-lyart.vercel.app" target="_blank" class="project__description--link">
+                                        <i class="fa-solid fa-link"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+        <div class="container">
+            <div class="row footer__row">
+                <figure>
+                    <img class="footer__logo--img" src="./assets/map-of-mathematics.jpeg" alt="">
+                </figure>
+                <div class="footer__social--list">
+                    <a href="https://github.com/QuantumMarttY-tape2" target="_blank" class="
+                    footer__social--link
+                    link__hover-effect
+                    link__hover-effect--white">
+                        GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/fukun-yun-842184321/" target="_blank" class="
+                    footer__social--link
+                    link__hover-effect
+                    link__hover-effect--white">
+                        LinkedIn
+                    </a>
+                    <a href="#" onclick="toggleModal()" class="
+                    footer__social--link
+                    link__hover-effect
+                    link__hover-effect--white">
+                        Contact
+                    </a>
+
+                    <!-- Need to attack resume at href -->
+                    <a href="#" target="_blank" class="
+                    footer__social--link
+                    link__hover-effect
+                    link__hover-effect--white">
+                        Resume
+                    </a>
+                </div>
+                <div class="footer__copyright">Copyright &copy; 2024</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
