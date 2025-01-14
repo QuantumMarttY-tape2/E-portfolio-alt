@@ -101,6 +101,10 @@ input:focus, textarea:focus {
     color: #ff8000 !important;
 }
 
+.red {
+    color: #ff0000 !important;
+}
+
 .link__hover-effect {
     position: relative;
 }
@@ -204,7 +208,6 @@ nav,
 }
 
 .social__link {
-    background-color: #ff8000;
     color: #ffffff;
     padding: 6px;
     width: 32px;
@@ -215,6 +218,14 @@ nav,
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+}
+
+.color-orange {
+    background-color: #ff8000;
+}
+
+.color-red {
+    background-color: #ff0000;
 }
 
 .mail__btn {
